@@ -7311,9 +7311,8 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
-"react-videotape@link:..":
-  version "0.0.0"
-  uid ""
+"react-videotape@file:..":
+  version "1.0.3"
 
 react@^18.2.0:
   version "18.2.0"
