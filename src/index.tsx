@@ -7,8 +7,12 @@ interface props {
 
 const SayHello = ({ name }: props): JSX.Element => {    
     return (
-        <div className='text-red-800 p-3 border border-slate-800 rounded-md'>Hey {name}, say hello to TypeScript.</div>
+        <div className='h-full w-full flex justify-center items-center'>
+            <span className='text-red-800 hover:text-blue-500 duration-300 p-3 border border-slate-800 rounded-md cursor-pointer'>Hey {name}, say hello to TypeScript.</span>
+        </div>
     );
 }
 
-export default SayHello;
+export {
+    SayHello
+};

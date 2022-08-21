@@ -5,7 +5,7 @@ tasks:
 
   - name: Library
     init: yarn install
-    command: yarn build
+    command: yarn watch
 
 ports:
   - name: Web App

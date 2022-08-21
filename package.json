@@ -1,6 +1,6 @@
 {
   "name": "react-videotape",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Video player with build in controls for react",
   "author": "Tanishq Singh <tanishqsingh640@gmail.com>",
   "contributors": [],
@@ -15,12 +15,16 @@
     "build": "yarn build:esm && yarn build:cjs && yarn build:css",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs",
-    "build:css": "NODE_ENV=production npx tailwindcss -o ./lib/styles/global.css --minify"
+    "build:css": "NODE_ENV=production npx tailwindcss -o ./lib/styles/global.css --minify",
+    "watch": "concurrently \"yarn watch:esm\" \"yarn watch:css\"",
+    "watch:esm": "tsc --watch",
+    "watch:css": "npx tailwindcss -o ./lib/styles/global.css --minify --watch"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "autoprefixer": "^10.4.8",
+    "concurrently": "^7.3.0",
     "postcss": "^8.4.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

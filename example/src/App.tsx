@@ -1,9 +1,9 @@
 import React from 'react';
-import SayName from 'react-videotape';
+import { SayHello } from 'react-videotape';
 
 function App() {
   return (
-    <SayName name='Kaju' />
+    <SayHello name='Kaju' />
   );
 }
 
