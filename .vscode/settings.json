@@ -1,5 +1,6 @@
 {
     "yaml.schemas": {
         "https://json.schemastore.org/github-workflow.json": "file:///workspace/react-videotape/.github/workflows/deploy.yml"
-    }
+    },
+    "git.enabled": false
 }

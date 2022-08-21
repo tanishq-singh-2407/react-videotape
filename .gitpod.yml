@@ -1,11 +1,11 @@
 tasks:
-  - name: Web App 
-    init: cd example && yarn install 
-    command: cd example && yarn start
-
   - name: Library
     init: yarn install
     command: yarn watch
+    
+  - name: Web App 
+    init: cd example && yarn install 
+    command: cd example && yarn start
 
 ports:
   - name: Web App

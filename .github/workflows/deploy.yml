@@ -20,7 +20,6 @@ jobs:
         run: |
           yarn install
           yarn build
-
       - name: Publish package on NPM 📦
         run: npm publish
         env:
@@ -46,7 +45,6 @@ jobs:
           yarn install
           yarn add react-videotape@latest
           yarn build
-
       - name: Set up vercel
         uses: amondnet/vercel-action@v20
         with:

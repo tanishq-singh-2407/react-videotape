@@ -1,0 +1,41 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-push:
+    name: Building Library and Demo App
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+        
+    - name: Building Package
+      run: |
+        yarn install
+        yarn build
+        
+    - name: Building App
+      run: |
+        cd example
+        yarn install
+        yarn build
+        
+    - name: Deploying Web App
+      run: |
+        cd example
+      
+        # Build .vercel configuration
+        mkdir build/.vercel
+        touch build/.vercel/project.json
+        echo '{ "orgId": "${{ secrets.VERCEL_ORG_ID }}", "projectId": "${{ secrets.VERCEL_PROJECT_ID }}" }' > build/.vercel/project.json
+        
+        # Deploy to vercel
+        vercel deploy build -t ${{ secrets.VERCEL_TOKEN }} --prod -y
