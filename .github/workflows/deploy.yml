@@ -42,7 +42,9 @@ jobs:
       - name: Install package and build
         run: |
           cd example
+          yarn remove react-videotape
           yarn install
+          yarn add react-videotape@latest
           yarn build
 
       - name: Set up vercel

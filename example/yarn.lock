@@ -7311,8 +7311,10 @@ react-scripts@5.0.1:
   optionalDependencies:
     fsevents "^2.3.2"
 
-"react-videotape@file:..":
-  version "1.0.3"
+react-videotape@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-videotape/-/react-videotape-1.0.5.tgz#5f9541560fd721c29ece001f16fff63381c897ff"
+  integrity sha512-3ZsHP3d8ig7O/bBNKvp2k4w+rwJ3rCdOWGkFCNL+wJNHPvHH269LA1Sax12+U0YLOFJdQhgx+rY9XXZBmZ+RJQ==
 
 react@^18.2.0:
   version "18.2.0"
