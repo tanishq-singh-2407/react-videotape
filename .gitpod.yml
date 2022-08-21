@@ -1,0 +1,14 @@
+tasks:
+  - name: Web App 
+    init: cd example && yarn install 
+    command: cd example && yarn start
+
+  - name: Library
+    init: yarn install
+    command: yarn build
+
+ports:
+  - name: Web App
+    port: 3000
+    visibility: private
+    onOpen: notify

@@ -1,6 +1,9 @@
 {
   "name": "react-videotape",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "Video player with build in controls for react",
+  "author": "Tanishq Singh <tanishqsingh640@gmail.com>",
+  "contributors": [],
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
@@ -19,5 +22,21 @@
     "typescript": "^4.7.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanishq-singh-2301/react-videotape"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "videoplayer",
+    "videotape",
+    "video-player",
+    "video"
+  ],
+  "bugs": {
+    "url": "https://github.com/tanishq-singh-2301/react-videotape/issues"
+  },
+  "homepage": "https://github.com/tanishq-singh-2301/react-videotape#readme"
 }
