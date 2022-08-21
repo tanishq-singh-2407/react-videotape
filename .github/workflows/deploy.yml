@@ -6,7 +6,6 @@ on:
 
 jobs:
   publish-npm:
-    needs: build
     name: Deploying package to npm 😱
     runs-on: ubuntu-latest
 
