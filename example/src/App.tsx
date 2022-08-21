@@ -3,9 +3,7 @@ import SayName from 'react-videotape';
 
 function App() {
   return (
-    <div>
-      <SayName name='Kaju' />
-    </div>
+    <SayName name='Kaju' />
   );
 }
 

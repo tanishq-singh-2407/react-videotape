@@ -1,3 +1,4 @@
+import '../styles/global.css';
 import React from "react";
 
 interface props {
@@ -6,7 +7,7 @@ interface props {
 
 const SayHello = ({ name }: props): JSX.Element => {    
     return (
-        <div>Hey {name}, say hello to TypeScript.</div>
+        <div className='text-red-800 p-3 border border-slate-800 rounded-md'>Hey {name}, say hello to TypeScript.</div>
     );
 }
 
