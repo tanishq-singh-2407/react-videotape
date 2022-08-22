@@ -7,13 +7,4 @@ import Duration from './duration';
 import PlayBackRate from './playBackRate';
 import AutoPlay from './autoplay';
 
-export {
-    PlayPauseSet,
-    Volume,
-    ProgressBar,
-    Settings,
-    ToggleScreen,
-    Duration,
-    PlayBackRate,
-    AutoPlay
-}
+export { PlayPauseSet, Volume, ProgressBar, Settings, ToggleScreen, Duration, PlayBackRate, AutoPlay };

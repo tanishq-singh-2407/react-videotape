@@ -1,4 +1,4 @@
-import { MutableRefObject } from 'react';
+import React, { MutableRefObject } from 'react';
 import { MdSettings } from 'react-icons/md';
 
 interface props {
@@ -13,7 +13,7 @@ const Settings = ({ className }: props) => {
                 <MdSettings color="white" className="h-6 w-6 sm:h-7 sm:w-7" />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Settings 
+export default Settings;

@@ -1,5 +1,1 @@
-import Home from '../pages';
-
-export {
-    Home
-}
+export * from '../pages/index';

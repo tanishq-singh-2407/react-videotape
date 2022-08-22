@@ -1,34 +1,20 @@
 {
-  "compilerOptions": {
-    "experimentalDecorators": true,
-    "baseUrl": ".",
-    "module": "esnext",
-    "target": "es2017",
-    "lib": ["es6", "dom", "esnext.asynciterable", "es2017"],
-    "allowJs": true,
-    "jsx": "react-jsx",
-    "rootDir": "src",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true,
-    "removeComments": true,
-    "declaration": true,
-    "declarationDir": "types",
-    "sourceMap": true,
-    "outDir": "dist",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true
-  },
-  "include": ["src"],
-  "exclude": [
-    "node_modules",
-    "build",
-    "test"
-  ]
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "jsx": "react",
+        "lib": ["es5", "es2015", "es2016", "dom", "esnext"],
+        "types": ["node"],
+        "module": "es2015",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "outDir": "dist/esm",
+        "sourceMap": true,
+        "strict": true,
+        "target": "es6"
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "exclude": ["example"]
 }

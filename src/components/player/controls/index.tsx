@@ -1,13 +1,13 @@
-import { MutableRefObject, useEffect, useRef } from "react";
-import { FullScreenHandle } from "react-full-screen";
+import React, { MutableRefObject, useEffect, useRef } from 'react';
+import { FullScreenHandle } from 'react-full-screen';
 import { PlayPauseSet, Volume, ProgressBar, Settings, ToggleScreen, Duration, PlayBackRate, AutoPlay } from './imports';
-import hideElement from "../../../utils/html/hideElement";
-import showElement from "../../../utils/html/showElement";
+import hideElement from '../../../utils/html/hideElement';
+import showElement from '../../../utils/html/showElement';
 
 interface props {
     player: MutableRefObject<HTMLVideoElement | null>;
     videos: string[];
-    videoScreenHandle: FullScreenHandle
+    videoScreenHandle: FullScreenHandle;
 }
 
 const Controls = ({ player, videos, videoScreenHandle }: props) => {
@@ -21,7 +21,7 @@ const Controls = ({ player, videos, videoScreenHandle }: props) => {
 
         clearTimeout(timeout);
         timeout = setTimeout(() => hideElement(controls), duration);
-    }
+    };
 
     useEffect(() => {
         const controls_current: HTMLDivElement | null = controls.current;
@@ -29,26 +29,25 @@ const Controls = ({ player, videos, videoScreenHandle }: props) => {
 
         if (!controls_current) return;
 
-        controls_current.addEventListener("mousemove", toggle);
-        controls_current.addEventListener("focus", toggle);
-        controls_current.addEventListener("touchstart", toggle);
-        controls_current.addEventListener("touchmove", toggle);
+        controls_current.addEventListener('mousemove', toggle);
+        controls_current.addEventListener('focus', toggle);
+        controls_current.addEventListener('touchstart', toggle);
+        controls_current.addEventListener('touchmove', toggle);
 
         if (!video) return;
-        video.addEventListener("play", toggle);
-        video.addEventListener("pause", toggle);
-        video.addEventListener("seeking", toggle);
-        video.addEventListener("volumechange", toggle);
-        video.addEventListener("fullscreenchange", toggle);
-        video.addEventListener("ended", toggle);
-        video.addEventListener("ratechange", toggle);
+        video.addEventListener('play', toggle);
+        video.addEventListener('pause', toggle);
+        video.addEventListener('seeking', toggle);
+        video.addEventListener('volumechange', toggle);
+        video.addEventListener('fullscreenchange', toggle);
+        video.addEventListener('ended', toggle);
+        video.addEventListener('ratechange', toggle);
 
         // eslint-disable-next-line
     }, []);
 
     return (
         <div ref={controls} className="relative h-full w-full flex flex-col opacity-0 lg:justify-end items-center duration-300">
-
             <div className="w-full h-4 lgt:absolute lgt:bottom-1 flex justify-center items-center lgt:px-2">
                 <ProgressBar player={player} className="w-full" />
             </div>
@@ -64,9 +63,8 @@ const Controls = ({ player, videos, videoScreenHandle }: props) => {
                 <Settings player={player} className="lgt:absolute lgt:top-0 lgt:right-0 lg:mr-6" />
                 <ToggleScreen toggleHandle={videoScreenHandle} player={player} className="lgt:absolute bottom-6 lg:bottom-0 md:bottom-8 lgt:right-2" />
             </div>
-
         </div>
-    )
-}
+    );
+};
 
 export default Controls;

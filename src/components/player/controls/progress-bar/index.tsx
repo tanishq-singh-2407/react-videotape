@@ -1,5 +1,5 @@
-import { MutableRefObject, useEffect, useState } from 'react';
-import Slider from '../../../slider';
+import React, { MutableRefObject, useEffect, useState } from 'react';
+import { Slider } from '../../../slider';
 
 interface props {
     player: MutableRefObject<HTMLVideoElement | null>;
@@ -21,14 +21,13 @@ const ProgressBar = ({ player, className }: props) => {
 
         if (!video) return;
 
-        video.addEventListener("timeupdate", () => setPlayed(isNaN(video.duration) ? 0 : (video.currentTime / video.duration)));
-        video.addEventListener("seeking", () => setPlayed(isNaN(video.duration) ? 0 : (video.currentTime / video.duration)));
+        video.addEventListener('timeupdate', () => setPlayed(isNaN(video.duration) ? 0 : video.currentTime / video.duration));
+        video.addEventListener('seeking', () => setPlayed(isNaN(video.duration) ? 0 : video.currentTime / video.duration));
 
-        document.addEventListener("keydown", (ev: KeyboardEvent) => {
+        document.addEventListener('keydown', (ev: KeyboardEvent) => {
             const { key } = ev;
 
-            if (!Number.isNaN(Number(key)) && key !== " ")
-                video.currentTime = (Number(key) / 10) * video.duration;
+            if (!Number.isNaN(Number(key)) && key !== ' ') video.currentTime = (Number(key) / 10) * video.duration;
         });
 
         // eslint-disable-next-line
@@ -36,12 +35,9 @@ const ProgressBar = ({ player, className }: props) => {
 
     return (
         <div className={className}>
-            <Slider
-                onChange={val => handleChange(val, player)}
-                value={played}
-            />
+            <Slider onChange={(val: number) => handleChange(val, player)} value={played} />
         </div>
-    )
-}
+    );
+};
 
-export default ProgressBar 
+export default ProgressBar;

@@ -6,6 +6,4 @@ interface handleProps {
     className?: string;
 }
 
-export type {
-    handleProps
-}
+export type { handleProps };

@@ -1,0 +1,68 @@
+name: Deploy
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish-npm:
+    name: Deploying package to npm 😱
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+
+      - name: Building Package 🌨️
+        run: |
+          yarn install
+          yarn build
+
+      - name: Publish package on NPM 📦
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  building-example:
+    needs: publish-npm
+    name: Building Example (Web App) ⚒️
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Installing Packages 📝
+        run: |
+          cd example
+
+          yarn remove react-videotape
+          yarn install
+          yarn add react-videotape@latest
+
+      - name: Building App 📦
+        run: cd example && yarn build
+
+      - name: Uploading web_build artifact ☁️
+        uses: actions/upload-artifact@v2
+        with:
+          name: web_build
+          path: example/build
+          retention-days: 1
+
+      - name: Deploy to vercel
+        run: |
+          cd example
+
+          # Build .vercel configuration
+          mkdir build/.vercel
+          touch build/.vercel/project.json
+          echo '{ "orgId": "${{ secrets.ORG_ID }}", "projectId": "${{ secrets.PROJECT_ID }}" }' > build/.vercel/project.json
+          
+          # Deploy to vercel
+          vercel deploy build -t ${{ secrets.VERCEL_TOKEN }} --prod -y

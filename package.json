@@ -1,51 +1,31 @@
 {
   "name": "react-videotape",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Video player with build in controls for react",
   "author": "Tanishq Singh <tanishqsingh640@gmail.com>",
   "contributors": [],
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "repository": "git+https://github.com/tanishq-singh-2301/react-videotape",
+  "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "files": [
     "dist"
   ],
-  "license": "MIT",
   "scripts": {
-    "build": "yarn build:tailwind && yarn build:rollup",
-    "watch": "concurrently \"yarn watch:rollup\" \"yarn watch:tailwind\"",
-    "build:rollup": "rollup -c",
-    "build:tailwind": "tailwindcss -o src/build.css --minify",
-    "watch:rollup": "rollup -c -w",
-    "watch:tailwind": "tailwindcss -o src/build.css --minify --watch"
+    "build": "rm -rf dist && yarn pretty && yarn build:esm && yarn build:cjs && yarn build:css",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
+    "build:css": "tailwindcss -i ./styles/global.css -o ./dist/index.css --minify",
+    "watch": "rm -rf dist && concurrently \"yarn watch:esm\" \"yarn watch:cjs\" \"yarn watch:css\" ",
+    "watch:esm": "tsc --watch",
+    "watch:cjs": "tsc --module CommonJS --outDir dist/cjs --watch",
+    "watch:css": "tailwindcss -i ./styles/global.css -o ./dist/index.css --watch",
+    "pretty": "prettier --write src"
   },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.1.3",
-    "@rollup/plugin-typescript": "^8.3.0",
-    "@types/moment-duration-format": "^2.2.3",
-    "@types/node": "^18.7.8",
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
-    "autoprefixer": "^10.4.8",
-    "babel-eslint": "^10.1.0",
-    "concurrently": "^7.3.0",
-    "postcss": "^8.4.16",
-    "postcss-cli": "^9.1.0",
-    "postcss-loader": "^7.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup": "^2.67.2",
-    "rollup-plugin-dts": "^4.1.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2",
-    "tailwindcss": "^3.1.8",
-    "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+  "bugs": {
+    "url": "https://github.com/tanishq-singh-2301/react-videotape/issues"
   },
-  "repository": "git+https://github.com/tanishq-singh-2301/react-videotape",
+  "homepage": "https://github.com/tanishq-singh-2301/react-videotape#readme",
   "keywords": [
     "react",
     "typescript",
@@ -54,14 +34,26 @@
     "video-player",
     "video"
   ],
-  "bugs": {
-    "url": "https://github.com/tanishq-singh-2301/react-videotape/issues"
-  },
-  "homepage": "https://github.com/tanishq-singh-2301/react-videotape#readme",
   "dependencies": {
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.34",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-full-screen": "^1.1.1",
     "react-icons": "^4.4.0"
+  },
+  "devDependencies": {
+    "@types/moment-duration-format": "^2.2.3",
+    "@types/node": "^18.7.9",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "concurrently": "^7.3.0",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.8",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

@@ -1,7 +1,7 @@
-import { MutableRefObject, useEffect, useState } from "react";
-import Slider from '../../../slider';
+import React, { MutableRefObject, useEffect, useState } from 'react';
+import { Slider } from '../../../slider';
 import { MdVolumeUp, MdVolumeOff } from 'react-icons/md';
-import classNames from "../../../../utils/basic/classNames";
+import classNames from '../../../../utils/basic/classNames';
 
 interface props {
     player: MutableRefObject<HTMLVideoElement | null>;
@@ -18,11 +18,11 @@ const handleChange = ({ val, player }: handleProps) => {
 
     if (!video) return;
 
-    if (!val) // Mute and Un-Mute
+    if (!val)
+        // Mute and Un-Mute
         video.muted = !video.muted;
-
-    else // Adjust
-        video.volume = val
+    // Adjust
+    else video.volume = val;
 };
 
 const Volume = ({ player, className }: props) => {
@@ -38,66 +38,48 @@ const Volume = ({ player, className }: props) => {
 
         clearTimeout(timeout);
         timeout = setTimeout(() => setHover(false), duration);
-    }
+    };
 
     useEffect(() => {
         const video: HTMLVideoElement | null = player.current;
 
         if (!video) return;
 
-        video.addEventListener("volumechange", () => {
+        video.addEventListener('volumechange', () => {
             setVolume(video.volume);
             setIsMuted(video.muted);
             toggle();
         });
 
-        document.addEventListener("keydown", (ev: KeyboardEvent) => {
+        document.addEventListener('keydown', (ev: KeyboardEvent) => {
             const { key } = ev;
 
-            if (key === "M" || key === "m")
-                handleChange({ player, val: null });
-
-            else if (key === "ArrowUp") {
+            if (key === 'M' || key === 'm') handleChange({ player, val: null });
+            else if (key === 'ArrowUp') {
                 video.muted = false;
-                video.volume += .025;
-            }
-
-            else if (key === "ArrowDown")
-                video.volume -= .025;
+                video.volume += 0.025;
+            } else if (key === 'ArrowDown') video.volume -= 0.025;
         });
 
         // eslint-disable-next-line
     }, []);
 
     return (
-        <div
-            className={className}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-        >
+        <div className={className} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
             <div className="flex justify-center items-center relative">
                 <div className="flex justify-center items-center cursor-pointer" onClick={() => handleChange({ player, val: null })}>
-                    {
-                        ((volume <= 0.01) || isMuted) ?
-                            <MdVolumeOff color='white' className="h-6 w-6 sm:h-7 sm:w-7 lg:w-8 lg:h-8" /> :
-                            <MdVolumeUp color='white' className="h-6 w-6 sm:h-7 sm:w-7 lg:w-8 lg:h-8" />
-                    }
-                </div>
-                <div
-                    className={classNames(
-                        "h-full duration-300 flex justify-center items-center lgt:hidden lg:ml-2",
-                        hover ? "w-20" : "w-0"
+                    {volume <= 0.01 || isMuted ? (
+                        <MdVolumeOff color="white" className="h-6 w-6 sm:h-7 sm:w-7 lg:w-8 lg:h-8" />
+                    ) : (
+                        <MdVolumeUp color="white" className="h-6 w-6 sm:h-7 sm:w-7 lg:w-8 lg:h-8" />
                     )}
-                >
-                    <Slider
-                        value={((volume <= 0.01) || isMuted) ? 0 : volume}
-                        onChange={val => handleChange({ player, val })}
-                        onHoverFat={false}
-                    />
+                </div>
+                <div className={classNames('h-full duration-300 flex justify-center items-center lgt:hidden lg:ml-2', hover ? 'w-20' : 'w-0')}>
+                    <Slider value={volume <= 0.01 || isMuted ? 0 : volume} onChange={(val: number) => handleChange({ player, val })} onHoverFat={false} />
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Volume;

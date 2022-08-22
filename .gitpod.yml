@@ -1,11 +1,15 @@
 tasks:
-  - name: Library
+  - name: Package
     init: yarn install
     command: yarn watch
-    
-  - name: Web App 
-    init: cd example && yarn install 
-    command: cd example && yarn start
+
+  - name: Web App
+    init: cd example && yarn install
+    command: cd example && yarn build
+
+  - name: Install usefull packages
+    init: |
+      npm i -g serve
 
 ports:
   - name: Web App

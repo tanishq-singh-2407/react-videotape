@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Installing packages and Building Library 😗
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2 
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: Installing Packages 📝
+        run: yarn install
+
+      - name: Building App 📦
+        run: yarn build
+
+      - name: Creating `library build` folder ⚒️
+        run: |
+          mkdir lib_build
+          cp package.json ./lib_build/
+          cp LICENSE ./lib_build/
+          cp README.md ./lib_build/
+          mv dist ./lib_build/
+
+      - name: Uploading lib_build artifact ☁️
+        uses: actions/upload-artifact@v2
+        with:
+          name: lib_build
+          path: lib_build
+          retention-days: 1
+
+  unit_test:
+    needs: build
+    name: Unit Testing 🧪
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: Downloading lib_build artifact 🌨️
+        uses: actions/download-artifact@v2
+        with:
+          name: lib_build
+          path: lib_build
+
+      - name: Test 1
+        run: |
+          cd lib_build
+          ls -a
+          du -hs .
+          echo "No test rn."
+
+  release:
+    needs: unit_test
+    name: Creating a new release 🎀
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+
+      - name: Reading JSON
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+          path: 'package.json'
+          prop_path: 'version'
+
+      - run: echo ${{ steps.version.outputs.prop }}  # package.json version
+      - run: echo ${{ github.event.head_commit.message }} # last commit message
+
+      - name: Create Release ✒️
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ github.event.head_commit.message }} - v${{steps.version.outputs.prop}}
+          tag_name: v${{ steps.version.outputs.prop }}
+          token: ${{ secrets.PAT }}

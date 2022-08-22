@@ -1,34 +1,29 @@
-import { MutableRefObject, useEffect, useState } from "react";
+import React, { MutableRefObject, useEffect, useState } from 'react';
 
 interface props {
     className?: string;
     player: MutableRefObject<HTMLVideoElement | null>;
 }
 
-
 const AutoPlay = ({ className, player }: props) => {
-    const [autoPlay, setAutoPlay] = useState<boolean>(localStorage.getItem("autoplay") === "okay");
+    const [autoPlay, setAutoPlay] = useState<boolean>(localStorage.getItem('autoplay') === 'okay');
 
     const handleClick = (set: boolean) => {
         const video = player.current;
         if (!video) return;
 
-        if (set)
-            video.classList.add("autoplay");
-
-        else
-            video.classList.remove("autoplay");
+        if (set) video.classList.add('autoplay');
+        else video.classList.remove('autoplay');
 
         setAutoPlay(set);
-        localStorage.setItem("autoplay", set ? "okay" : "na-na");
-    }
+        localStorage.setItem('autoplay', set ? 'okay' : 'na-na');
+    };
 
     useEffect(() => {
-        document.addEventListener("keydown", (ev: KeyboardEvent) => {
+        document.addEventListener('keydown', (ev: KeyboardEvent) => {
             const { key } = ev;
 
-            if (key === "A")
-                handleClick(!autoPlay);
+            if (key === 'A') handleClick(!autoPlay);
         });
 
         // eslint-disable-next-line
@@ -43,7 +38,7 @@ const AutoPlay = ({ className, player }: props) => {
                 </label>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default AutoPlay;

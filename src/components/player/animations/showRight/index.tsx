@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface props {
     children: JSX.Element;
     lower?: string;
@@ -11,7 +13,7 @@ const ShowRight = ({ children, lower }: props) => {
                 {lower && <span className="absolute bottom-0 -translate-y-1/2 md:-translate-y-full text-xs text-center font-normal text-white">{lower}</span>}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default ShowRight;

@@ -2,5 +2,19 @@
     "yaml.schemas": {
         "https://json.schemastore.org/github-workflow.json": "file:///workspace/react-videotape/.github/workflows/deploy.yml"
     },
-    "git.enabled": false
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "git.enabled": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        ".vscode": true,
+        "node_modules": true
+    }
 }
