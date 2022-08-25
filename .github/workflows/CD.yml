@@ -41,7 +41,7 @@ jobs:
         run: yarn install
 
       - name: Building App 📦
-        run: yarn build:web
+        run: yarn build
 
       - name: Uploading web_build artifact ☁️
         uses: actions/upload-artifact@v2
