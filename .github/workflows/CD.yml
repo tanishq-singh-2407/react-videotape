@@ -55,7 +55,7 @@ jobs:
           # Build .vercel configuration
           mkdir build/web/.vercel
           touch build/web/.vercel/project.json
-          echo '{ "orgId": "${{ secrets.VERCEL_ORG_ID }}", "projectId": "${{ secrets.VERCEL_PROJECT_ID }}" }' > build/web/.vercel/project.json
+          echo '{ "orgId": "${{ secrets.ORG_ID }}", "projectId": "${{ secrets.PROJECT_ID }}" }' > build/web/.vercel/project.json
 
           # Deploy to vercel
           vercel deploy build/web -t ${{ secrets.VERCEL_TOKEN }} --prod -y
