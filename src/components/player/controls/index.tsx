@@ -52,7 +52,7 @@ const Controls = ({ player, videos, videoScreenHandle }: props) => {
                 <ProgressBar player={player} className="w-full" />
             </div>
 
-            <div className="w-full lgt:absolute h-full lg:h-fit flex items-center lg:mt-2 px-3 pr-4">
+            <div className="w-full lgt:absolute lgt:h-full flex items-center lg:mt-2 px-3 pr-4">
                 <PlayPauseSet player={player} videos={videos} className="lgt:w-full lgt:max-w-2xl lgt:absolute lgt:top-1/2 lgt:left-1/2 lgt:-translate-x-1/2 lgt:-translate-y-1/2" />
                 <Volume player={player} className="lgt:absolute lgt:top-0 lgt:left-0 lg:ml-6" />
                 <Duration player={player} className="lgt:absolute bottom-6 lg:bottom-0 md:bottom-8 lg:mr-auto lg:ml-6" />

@@ -1,4 +1,5 @@
 import './index.css';
+import '../build/lib/index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './routes/index';
