@@ -10,11 +10,11 @@
         "moduleResolution": "node",
         "noImplicitAny": true,
         "noUnusedLocals": true,
-        "outDir": "dist/esm",
-        "sourceMap": true,
+        "outDir": "build/lib/esm",
+        "sourceMap": false,
         "strict": true,
         "target": "es6"
     },
     "include": ["src/**/*.ts", "src/**/*.tsx"],
-    "exclude": ["example"]
+    "exclude": ["example", "build", "node_modules", "web", "webpack"]
 }

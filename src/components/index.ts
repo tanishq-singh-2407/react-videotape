@@ -1,3 +1,2 @@
-export * from './player';
-export * from './shortcuts';
-export * from './slider';
+export { default as Player } from './player';
+export { default as Shortcuts } from './shortcuts';

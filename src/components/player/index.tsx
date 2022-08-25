@@ -31,7 +31,7 @@ const onLoadedMetadata = async (ev: SyntheticEvent<HTMLVideoElement, Event>, rat
 
 const videoClassNames = classNames('h-full w-full', iOS() ? '' : 'pointer-events-none', localStorage.getItem('autoplay') === 'okay' ? 'autoplay' : '');
 
-export const Player = ({ videos, rate, skip, onError }: props): JSX.Element => {
+const Player = ({ videos, rate, skip, onError }: props): JSX.Element => {
     const player = useRef<HTMLVideoElement | null>(null);
     const videoScreenHandle = useFullScreenHandle();
 
@@ -59,3 +59,5 @@ export const Player = ({ videos, rate, skip, onError }: props): JSX.Element => {
         </FullScreen>
     );
 };
+
+export default Player;

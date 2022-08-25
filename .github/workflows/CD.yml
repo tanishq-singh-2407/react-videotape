@@ -19,7 +19,7 @@ jobs:
       - name: Building Package 🌨️
         run: |
           yarn install
-          yarn build
+          yarn build:lib
 
       - name: Publish package on NPM 📦
         run: npm publish
@@ -38,31 +38,24 @@ jobs:
           node-version: 16
 
       - name: Installing Packages 📝
-        run: |
-          cd example
-
-          yarn remove react-videotape
-          yarn install
-          yarn add react-videotape@latest
+        run: yarn install
 
       - name: Building App 📦
-        run: cd example && yarn build
+        run: yarn build:web
 
       - name: Uploading web_build artifact ☁️
         uses: actions/upload-artifact@v2
         with:
           name: web_build
-          path: example/build
+          path: build/web
           retention-days: 1
 
       - name: Deploy to vercel
         run: |
-          cd example
-
           # Build .vercel configuration
-          mkdir build/.vercel
-          touch build/.vercel/project.json
-          echo '{ "orgId": "${{ secrets.ORG_ID }}", "projectId": "${{ secrets.PROJECT_ID }}" }' > build/.vercel/project.json
-          
+          mkdir build/web/.vercel
+          touch build/web/.vercel/project.json
+          echo '{ "orgId": "${{ secrets.VERCEL_ORG_ID }}", "projectId": "${{ secrets.VERCEL_PROJECT_ID }}" }' > build/web/.vercel/project.json
+
           # Deploy to vercel
-          vercel deploy build -t ${{ secrets.VERCEL_TOKEN }} --prod -y
+          vercel deploy build/web -t ${{ secrets.VERCEL_TOKEN }} --prod -y

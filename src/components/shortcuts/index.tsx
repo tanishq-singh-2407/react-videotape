@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from '../../utils/basic/classNames';
 
-export const ShortCuts = () => {
+const ShortCuts = () => {
     const [visible, setVisible] = useState<boolean>(false);
 
     useEffect(() => {
@@ -23,3 +23,5 @@ export const ShortCuts = () => {
         </div>
     );
 };
+
+export default ShortCuts;

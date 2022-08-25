@@ -1,5 +1,5 @@
 import React, { MutableRefObject, useEffect, useState } from 'react';
-import { Slider } from '../../../slider';
+import { Slider } from 'react-slid';
 import { MdVolumeUp, MdVolumeOff } from 'react-icons/md';
 import classNames from '../../../../utils/basic/classNames';
 
