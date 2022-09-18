@@ -17,12 +17,10 @@ const handleClick = async (player: MutableRefObject<HTMLVideoElement | null>, to
     try {
         if (document.fullscreenElement) await toggleHandle.exit();
         else {
-            if (iOS()) await (video as any).webkitEnterFullScreen();
+            if (iOS() && (video as any).webkitEnterFullScreen) await(video as any).webkitEnterFullScreen();
             else await toggleHandle.enter();
         }
-    } catch (error) {
-        alert((error as any).message);
-    }
+    } catch (error) {}
 };
 
 const ToggleScreen = ({ toggleHandle, player, className }: props) => {

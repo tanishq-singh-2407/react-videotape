@@ -13,6 +13,9 @@ export const Home = () => {
                             last: 0,
                             start: 10
                         }}
+                        onFullScreen={(isFullScreen) => {
+                            console.log(isFullScreen)
+                        }}
                     />
                 </div>
             </main>

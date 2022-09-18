@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useRef } from 'react';
+import React, { SyntheticEvent, useEffect, useRef } from 'react';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import iOS from '../../utils/basic/iOS';
 import classNames from '../../utils/basic/classNames';
@@ -14,6 +14,7 @@ type props = {
     skip?: Skip;
     rate?: number;
     onError?: (error: MediaError | null, player: HTMLVideoElement) => void;
+    onFullScreen?: (isFullScreen: boolean) => void;
 };
 
 const onLoadedMetadata = async (ev: SyntheticEvent<HTMLVideoElement, Event>, rate?: number, skip?: Skip) => {
@@ -31,9 +32,11 @@ const onLoadedMetadata = async (ev: SyntheticEvent<HTMLVideoElement, Event>, rat
 
 const videoClassNames = classNames('h-full w-full', iOS() ? '' : 'pointer-events-none', localStorage.getItem('autoplay') === 'okay' ? 'autoplay' : '');
 
-const Player = ({ videos, rate, skip, onError }: props): JSX.Element => {
+const Player = ({ videos, rate, skip, onError, onFullScreen }: props): JSX.Element => {
     const player = useRef<HTMLVideoElement | null>(null);
     const videoScreenHandle = useFullScreenHandle();
+
+    useEffect(() => onFullScreen && onFullScreen(videoScreenHandle.active), [videoScreenHandle]);
 
     return (
         <FullScreen handle={videoScreenHandle} className="h-full w-full flex justify-center items-center">
